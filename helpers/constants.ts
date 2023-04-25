@@ -2,7 +2,6 @@ export const API_ROUTES = {
   register: "/auth/local/register",
   login: "/auth/local",
   me: "/users/me",
-  product: "/product",
-  products: "/products",
-  shortcutCategories: "/shortcut-categories",
+  mk11Ultimate: "/mk-11-ultimate",
+  mkCharacterVariations: "/mk-character-variations",
 };

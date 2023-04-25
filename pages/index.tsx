@@ -1,14 +1,40 @@
+import { API_ROUTES } from "@/helpers/constants";
+import fetcher from "@/service/service";
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { useRouter } from "next/router";
+// import { Inter } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export async function getStaticProps() {
+  const { data } = await fetcher(API_ROUTES.mk11Ultimate);
+  return {
+    props: {
+      mk11UltimateData: data,
+    }, // will be passed to the page component as props
+  };
+}
+
+export default function Home({ mk11UltimateData }: { mk11UltimateData: any }) {
+  console.log(mk11UltimateData);
+  const name = mk11UltimateData?.attributes?.name;
+  const navigate = useRouter();
+  function handleOnClick() {
+    navigate.push("/mk11Ultimate");
+  }
+
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex"></div>
+    <main className={`min-h-screen p-4 mt-10 select-none`}>
+      {name && (
+        <div
+          className={
+            "p-2 rounded border-[1px] border-gray-500 cursor-pointer max-w-[250px] flex justify-center items-center"
+          }
+          onClick={handleOnClick}
+        >
+          {name}
+        </div>
+      )}
     </main>
   );
 }
