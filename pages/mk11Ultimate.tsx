@@ -35,7 +35,7 @@ export default function Home({ mk11UltimateData }: Props) {
   }: MK11UltimateAttributes = mk11UltimateData?.attributes;
   const hasCharacters = data?.length > 0;
   const characters = data as MKCharacter[];
-
+  console.log(characters);
   function handleCharacterClick(id: number) {
     navigate.push("/mkCharacterVariation/" + id);
   }
