@@ -1,6 +1,6 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
-import { MK11Ultimate } from "@/types/types";
+import { MK11Ultimate } from "@/types/mk11UltimateType";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // import { Inter } from "next/font/google";
