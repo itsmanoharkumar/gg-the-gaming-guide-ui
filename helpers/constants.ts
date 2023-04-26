@@ -3,5 +3,6 @@ export const API_ROUTES = {
   login: "/auth/local",
   me: "/users/me",
   mk11Ultimate: "/mk-11-ultimate",
+  mkCharacters: "/mk-characters",
   mkCharacterVariations: "/mk-character-variations",
 };

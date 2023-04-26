@@ -1,5 +1,6 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
+import { MK11Ultimate } from "@/types/types";
 import Image from "next/image";
 import { useRouter } from "next/router";
 // import { Inter } from "next/font/google";
@@ -15,7 +16,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ mk11UltimateData }: { mk11UltimateData: any }) {
+export default function Home({
+  mk11UltimateData,
+}: {
+  mk11UltimateData: MK11Ultimate;
+}) {
   console.log(mk11UltimateData);
   const name = mk11UltimateData?.attributes?.name;
   const navigate = useRouter();

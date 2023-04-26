@@ -1,14 +1,18 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
-import { divide } from "lodash";
-import Image from "next/image";
-import { Inter } from "next/font/google";
+import { MK11Ultimate, MKCharacter, MKCharacterVariation } from "@/types/types";
 import { useRouter } from "next/router";
-
-const inter = Inter({ subsets: ["latin"] });
+import qs from "qs";
 
 export async function getStaticProps() {
-  const { data } = await fetcher(API_ROUTES.mk11Ultimate + "?populate=*");
+  const query = qs.stringify({
+    populate: {
+      mk_characters: {
+        populate: ["mk_character_variations"],
+      },
+    },
+  });
+  const { data } = await fetcher(API_ROUTES.mk11Ultimate + "?" + query);
   return {
     props: {
       mk11UltimateData: data,
@@ -16,33 +20,54 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ mk11UltimateData }: { mk11UltimateData: any }) {
-  console.log(mk11UltimateData);
+interface Props {
+  mk11UltimateData: MK11Ultimate;
+}
+
+export default function Home({ mk11UltimateData }: Props) {
+  const navigate = useRouter();
+
   const name = mk11UltimateData?.attributes?.name;
   const characters = mk11UltimateData?.attributes?.mk_characters?.data;
   const hasCharacters = characters?.length > 0;
-  const navigate = useRouter();
+
   function handleCharacterClick(id: number) {
-    navigate.push("/mkCharacter/" + id);
+    navigate.push("/mkCharacterVariation/" + id);
   }
+
   return (
-    <main className={`min-h-screen p-4 mt-10 select-none ${inter.className}`}>
+    <main className={`min-h-screen p-4 mt-10 select-none`}>
       {name && <div className={"p-2 text-xl text-center"}>{name}</div>}
       {hasCharacters && (
         <div className={"rounded p-2 flex flex-wrap justify-start"}>
-          {characters.map((character: any) => {
+          {characters.map((character: MKCharacter) => {
+            const id = character?.id;
+            const attributes = character?.attributes;
+            const name = attributes?.name;
+            const variations = attributes?.mk_character_variations;
             return (
               <div
-                key={character.id}
-                className={
-                  "p-2 flex justify-start border-gray-500 border-[1px]" +
-                  " items-center w-[300] rounded cursor-pointer"
-                }
-                onClick={() => {
-                  handleCharacterClick(character.id);
-                }}
+                key={id}
+                className={`w-[100%] p-2 border-gray-200 border-[1px] rounded`}
               >
-                {character?.attributes?.name}
+                {name}
+                {variations?.data?.map((variation: MKCharacterVariation) => {
+                  const name = variation?.attributes?.name;
+                  return (
+                    <div
+                      key={variation.id}
+                      className={
+                        "p-2 flex justify-start border-gray-200 border-[1px]" +
+                        " items-center w-[300] rounded cursor-pointer my-2"
+                      }
+                      onClick={() => {
+                        handleCharacterClick(variation.id);
+                      }}
+                    >
+                      {name}
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
