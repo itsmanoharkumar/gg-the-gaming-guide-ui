@@ -1,4 +1,4 @@
-import { OPERATING_SYSTEM } from "@/types/types";
+import { OPERATING_SYSTEM } from "@/types/enums";
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 

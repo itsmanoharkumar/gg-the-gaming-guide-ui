@@ -1,3 +1,6 @@
+import { MOVE_TYPE } from "@/types/enums";
+import { MKCharacter } from "@/types/mkCharacterType";
+
 export type Timestamp = {
   createdAt: string;
   updatedAt: string;
@@ -26,11 +29,6 @@ export type ShortcutCategory = {
   id: number;
   attributes: ShortcutCategoryAttributes;
 };
-
-export const enum OPERATING_SYSTEM {
-  MAC = "mac",
-  WINDOWS = "windows",
-}
 
 export type MKCharacterVariationAttributes = {
   name: string;
@@ -91,14 +89,6 @@ export type MKFrameData = {
   fBlockAdv: number;
 };
 
-export enum MOVE_TYPE {
-  High = "High",
-  Mid = "Mid",
-  Low = "Low",
-  Overhead = "Overhead",
-  Throw = "Throw",
-}
-
 export type MKMoveData = {
   id: number;
   blockDamage: number;
@@ -117,97 +107,4 @@ export type MKKeyCombo = {
 export type MKCharacterVariation = {
   id: number;
   attributes: MKCharacterVariationAttributes;
-};
-
-export type MKCharacterAttributes = {
-  name: string;
-  mk_character_variations: {
-    data: MKCharacterVariation[];
-  };
-} & Timestamp;
-
-export type MKCharacter = {
-  id: number;
-  attributes: MKCharacterAttributes;
-};
-
-export type MK11UltimateAttributes = {
-  name: string;
-  mk_characters: {
-    data: MKCharacter[];
-  };
-} & Timestamp;
-
-export type MK11Ultimate = {
-  id: number;
-  attributes: MK11UltimateAttributes;
-};
-
-export type ImageData = {
-  id: number;
-  attributes: ImageAttributes;
-};
-
-export type ImageAttributes = {
-  name: string;
-  alternativeText: null | string;
-  caption: null | string;
-  width: number;
-  height: number;
-  formats: {
-    large: {
-      ext: string;
-      url: string;
-      hash: string;
-      mime: string;
-      name: string;
-      path: null | string;
-      size: number;
-      width: number;
-      height: number;
-    };
-    small: {
-      ext: string;
-      url: string;
-      hash: string;
-      mime: string;
-      name: string;
-      path: null | string;
-      size: number;
-      width: number;
-      height: number;
-    };
-    medium: {
-      ext: string;
-      url: string;
-      hash: string;
-      mime: string;
-      name: string;
-      path: null | string;
-      size: number;
-      width: number;
-      height: number;
-    };
-    thumbnail: {
-      ext: string;
-      url: string;
-      hash: string;
-      mime: string;
-      name: string;
-      path: null | string;
-      size: number;
-      width: number;
-      height: number;
-    };
-  };
-  hash: string;
-  ext: string;
-  mime: string;
-  size: number;
-  url: string;
-  previewUrl: null | string;
-  provider: string;
-  provider_metadata: null | object;
-  createdAt: string;
-  updatedAt: string;
 };
