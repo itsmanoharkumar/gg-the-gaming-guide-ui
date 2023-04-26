@@ -1,6 +1,8 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
-import { MK11Ultimate, MKCharacter, MKCharacterVariation } from "@/types/types";
+import { MK11Ultimate, MK11UltimateAttributes } from "@/types/mk11UltimateType";
+import { MKCharacter, MKCharacterAttributes } from "@/types/mkCharacterType";
+import { MKCharacterVariation } from "@/types/types";
 import { useRouter } from "next/router";
 import qs from "qs";
 
@@ -26,10 +28,12 @@ interface Props {
 
 export default function Home({ mk11UltimateData }: Props) {
   const navigate = useRouter();
-
-  const name = mk11UltimateData?.attributes?.name;
-  const characters = mk11UltimateData?.attributes?.mk_characters?.data;
-  const hasCharacters = characters?.length > 0;
+  const {
+    name,
+    mk_characters: { data },
+  }: MK11UltimateAttributes = mk11UltimateData?.attributes;
+  const hasCharacters = data?.length > 0;
+  const characters = data as MKCharacter[];
 
   function handleCharacterClick(id: number) {
     navigate.push("/mkCharacterVariation/" + id);

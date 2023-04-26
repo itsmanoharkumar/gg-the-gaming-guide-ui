@@ -1,5 +1,6 @@
-import { ImageData } from "@/types/ImageDataType";
-import { MKCharacter, Timestamp } from "@/types/types";
+import { StrapiImageData } from "@/types/ImageDataType";
+import { MKCharacter } from "@/types/mkCharacterType";
+import { Timestamp } from "@/types/types";
 
 export type MK11UltimateAttributes = {
   name: string;
@@ -7,7 +8,7 @@ export type MK11UltimateAttributes = {
     data: MKCharacter[];
   };
   banner: {
-    data: ImageData;
+    data: StrapiImageData;
   };
 } & Timestamp;
 
