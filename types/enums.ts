@@ -1,3 +1,10 @@
+export enum IMAGE_SIZE {
+  SMALL = "small",
+  MEDIUM = "medium",
+  LARGE = "large",
+  THUMBNAIL = "thumbnail",
+}
+
 export enum MOVE_TYPE {
   High = "High",
   Mid = "Mid",

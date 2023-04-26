@@ -2,6 +2,7 @@ import GameCard from "@/components/GameCard";
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
 import { MK11Ultimate } from "@/types/mk11UltimateType";
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 export async function getStaticProps() {
@@ -24,8 +25,13 @@ export default function Home({
   } = mk11UltimateData?.attributes;
 
   return (
-    <main className={`min-h-screen p-4 mt-10 select-none`}>
-      <GameCard gameName={name} banner={data} />
-    </main>
+    <>
+      <Head>
+        <title>GG The Gaming Guide</title>
+      </Head>
+      <main className={`min-h-screen p-4 pt-14 select-none`}>
+        <GameCard gameName={name} banner={data} />
+      </main>
+    </>
   );
 }

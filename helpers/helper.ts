@@ -1,3 +1,5 @@
+import { IMAGE_SIZE } from "@/types/enums";
+import { StrapiImageData } from "@/types/ImageDataType";
 import cookie from "cookie";
 
 export function parseCookies(req: any) {
@@ -19,4 +21,22 @@ export function handleNetworkError(networkError: any) {
     console.log(networkError);
   }
   return error;
+}
+
+export function extractImageData(
+  imageData: StrapiImageData,
+  imageSize: IMAGE_SIZE
+): { width: number; height: number; src: string } {
+  const { width, height, url } = imageData?.attributes?.formats[imageSize];
+  let src = url;
+  if (url?.startsWith("/")) {
+    src = url
+      .replace("/", process.env.NEXT_PUBLIC_SERVER_BASE_URL + "/")
+      .replace("api/", "");
+  }
+  return {
+    width,
+    height,
+    src,
+  };
 }

@@ -3,6 +3,7 @@ import fetcher from "@/service/service";
 import { MK11Ultimate, MK11UltimateAttributes } from "@/types/mk11UltimateType";
 import { MKCharacter, MKCharacterAttributes } from "@/types/mkCharacterType";
 import { MKCharacterVariation } from "@/types/types";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import qs from "qs";
 
@@ -40,43 +41,57 @@ export default function Home({ mk11UltimateData }: Props) {
   }
 
   return (
-    <main className={`min-h-screen p-4 mt-10 select-none`}>
-      {name && <div className={"p-2 text-xl text-center"}>{name}</div>}
-      {hasCharacters && (
-        <div className={"rounded p-2 flex flex-wrap justify-start"}>
-          {characters.map((character: MKCharacter) => {
-            const id = character?.id;
-            const attributes = character?.attributes;
-            const name = attributes?.name;
-            const variations = attributes?.mk_character_variations;
-            return (
-              <div
-                key={id}
-                className={`w-[100%] p-2 border-gray-200 border-[1px] rounded`}
-              >
-                {name}
-                {variations?.data?.map((variation: MKCharacterVariation) => {
-                  const name = variation?.attributes?.name;
-                  return (
-                    <div
-                      key={variation.id}
-                      className={
-                        "p-2 flex justify-start border-gray-200 border-[1px]" +
-                        " items-center w-[300] rounded cursor-pointer my-2"
-                      }
-                      onClick={() => {
-                        handleCharacterClick(variation.id);
-                      }}
-                    >
-                      {name}
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
+    <>
+      <Head>
+        <title>{name}</title>
+      </Head>
+      <main className={`min-h-screen p-4 mt-10 select-none`}>
+        {name && (
+          <div
+            className={"p-2 text-xl text-center sm:text-start font-semibold"}
+          >
+            {name}
+          </div>
+        )}
+        <div className={"p-2 text-lg text-center sm:text-start font-medium"}>
+          All Characters
         </div>
-      )}
-    </main>
+        {hasCharacters && (
+          <div className={"rounded p-2 flex flex-wrap justify-start"}>
+            {characters.map((character: MKCharacter) => {
+              const id = character?.id;
+              const attributes = character?.attributes;
+              const name = attributes?.name;
+              const variations = attributes?.mk_character_variations;
+              return (
+                <div
+                  key={id}
+                  className={`w-[100%] p-2 border-gray-200 border-[1px] rounded`}
+                >
+                  {name}
+                  {variations?.data?.map((variation: MKCharacterVariation) => {
+                    const name = variation?.attributes?.name;
+                    return (
+                      <div
+                        key={variation.id}
+                        className={
+                          "p-2 flex justify-start border-gray-200 border-[1px]" +
+                          " items-center w-[300] rounded cursor-pointer my-2"
+                        }
+                        onClick={() => {
+                          handleCharacterClick(variation.id);
+                        }}
+                      >
+                        {name}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </main>
+    </>
   );
 }
