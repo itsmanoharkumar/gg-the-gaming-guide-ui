@@ -6,12 +6,14 @@ import qs from "qs";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
 import Head from "next/head";
 import { useState } from "react";
+import PlaystationCommands from "@/components/molecules/PlaystationCommands";
 
 export async function getStaticProps({ params }: { params: { id: number } }) {
   const query = qs.stringify({
     populate: {
       mk_key_combos: {
         populate: ["frameData", "moveData", "mk_key_combo_subcategory"],
+        sort: ["moveData.damage:desc"],
       },
       mk_character: {
         populate: "*",
@@ -130,7 +132,9 @@ export default function Home({
               >
                 <div className={"flex justify-between"}>
                   <div>{name}</div>
-                  <div className={"no-wrap"}>{inputCommands}</div>
+                  <div>
+                    <PlaystationCommands inputCommands={inputCommands} />
+                  </div>
                 </div>
                 <div>
                   <div>{startUp + " Start Up"}</div>
