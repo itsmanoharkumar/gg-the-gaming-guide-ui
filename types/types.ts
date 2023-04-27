@@ -1,5 +1,6 @@
 import { MOVE_TYPE } from "@/types/enums";
 import { MKCharacter } from "@/types/mkCharacterType";
+import { StrapiImageData } from "@/types/ImageDataType";
 
 export type Timestamp = {
   createdAt: string;
@@ -37,6 +38,9 @@ export type MKCharacterVariationAttributes = {
   };
   mk_key_combos: {
     data: MKKeyCombo;
+  };
+  image: {
+    data: StrapiImageData;
   };
 } & Timestamp;
 
