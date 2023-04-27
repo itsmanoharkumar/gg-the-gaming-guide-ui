@@ -4,6 +4,8 @@ import fetcher from "@/service/service";
 import { MK11Ultimate } from "@/types/mk11UltimateType";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { getYoutubePlaylistApi } from "@/service/youtube";
 
 export async function getStaticProps() {
   const { data } = await fetcher(API_ROUTES.mk11Ultimate + "?populate=banner");
@@ -23,7 +25,6 @@ export default function Home({
     name,
     banner: { data },
   } = mk11UltimateData?.attributes;
-
   return (
     <>
       <Head>

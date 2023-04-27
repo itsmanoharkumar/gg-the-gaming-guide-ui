@@ -1,10 +1,6 @@
 
 9
 	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
-4
-.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
->
-.eslintrc.json,7\1\71c20a341bfe32aa5cd5b4384e94f942bab6a7d3
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
@@ -38,8 +34,6 @@ B
 store/store.ts,3\8\3892a922dbd2172744e9ad5620dc5c534534fec4
 <
 package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
-S
-#pages/mkCharacterVariation/[id].tsx,3\8\38524ea91047056696591167020010c6b60fc1f2
 H
 types/mkCharacterType.ts,4\7\4756f96caa5ebae38745be180ae2ad66280f823a
 A

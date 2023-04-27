@@ -8,6 +8,7 @@ import CharacterList from "@/components/molecules/CharacterList";
 import { useEffect, useState } from "react";
 import { MKCharacterVariation } from "@/types/types";
 import CharacterVariationList from "@/components/molecules/CharacterVariationList";
+import Breadcrumbs from "@/components/atoms/Breadcrumbs";
 
 export async function getStaticProps() {
   const query = qs.stringify({
@@ -75,14 +76,19 @@ export default function Home({ mk11UltimateData }: Props) {
         <title>{name}</title>
       </Head>
       <main className={`min-h-screen p-4 mt-10 select-none`}>
-        {name && (
-          <div className={"p-2 text-xs sm:text-xl sm:text-start font-semibold"}>
-            {name}
-            <span className={"text-blue-950 font-medium"}>
-              {" >"} All Characters{" "}
-            </span>
-          </div>
-        )}
+        <Breadcrumbs
+          breadcrumbList={[
+            {
+              name: "Home",
+              isLink: true,
+              link: "/",
+            },
+            {
+              name: name,
+              isLink: false,
+            },
+          ]}
+        />
         <div className={"flex flex-wrap justify-start p-2 w-full sm:w-1/3"}>
           <input
             className={"p-1 rounded w-full border-gray-300 border"}
