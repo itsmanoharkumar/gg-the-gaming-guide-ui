@@ -5,8 +5,11 @@ import { divide } from "lodash";
 import qs from "qs";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlaystationCommands from "@/components/molecules/PlaystationCommands";
+import MoveCardTitle from "@/components/molecules/MoveCardTitle";
+import MoveCardDetailSection from "@/components/molecules/MoveCardDetailSection";
+import MoveCardList from "@/components/molecules/MoveCardList";
 
 export async function getStaticProps({ params }: { params: { id: number } }) {
   const query = qs.stringify({
@@ -61,7 +64,22 @@ export default function Home({
   variationName: string;
 }) {
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [filteredKeyComboList, setFilteredKeyComboList] = useState<
+    MKKeyCombo[]
+  >([]);
+  useEffect(() => {
+    if (searchTerm) {
+      const filteredList = keyComboList.filter((item) => {
+        const attributes = item?.attributes;
+        const { name, inputCommands }: MKKeyComboAttributes = attributes;
+        return (
+          name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          inputCommands.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      });
+      setFilteredKeyComboList(filteredList);
+    }
+  }, [searchTerm]);
   return (
     <>
       <Head>
@@ -90,73 +108,16 @@ export default function Home({
             },
           ]}
         />
-        <div className={"flex flex-wrap justify-start p-2 w-full sm:w-1/3"}>
+        <div className={"flex flex-wrap justify-start py-2 w-full sm:w-1/3"}>
           <input
             className={"p-1 rounded w-full border-gray-300 border"}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={"Search Attack"}
           />
         </div>
-        <div className={"my-1 ml-2"}>
-          {keyComboList?.map((item: any) => {
-            const attributes = item?.attributes;
-            const {
-              name,
-              inputCommands,
-              frameData: {
-                active,
-                startUp,
-                recovery,
-                cancel,
-                hitAdv,
-                blockAdv,
-                fBlockAdv,
-              },
-              moveData: {
-                blockDamage,
-                damage,
-                fBlockDamage,
-                moveType,
-                specialNotes,
-                notes,
-              },
-              hasAmplify,
-              isEquipped,
-              isCancellable,
-              easyFatality,
-            }: MKKeyComboAttributes = attributes;
-            return (
-              <div
-                key={item.id}
-                className={"border-[1px] border-gray-400 p-2 my-2 rounded"}
-              >
-                <div className={"flex justify-between"}>
-                  <div>{name}</div>
-                  <div>
-                    <PlaystationCommands inputCommands={inputCommands} />
-                  </div>
-                </div>
-                <div>
-                  <div>{startUp + " Start Up"}</div>
-                  <div>{active + " Active"}</div>
-                  <div>{recovery + " Recovery"}</div>
-                  <div>{cancel + " Cancel"}</div>
-                  <div>{hitAdv + " Hit Advantage"}</div>
-                  <div>{blockAdv + " Block Advantage"}</div>
-                  <div>{fBlockAdv + " F/Block Advantage"}</div>
-                  <div>{fBlockAdv + " F/Block Advantage"}</div>
-                </div>
-                <div>
-                  <div>{blockDamage + " Block Damage"}</div>
-                  <div>{damage + " Damage"}</div>
-                  <div>{fBlockDamage + " F/Block Damage"}</div>
-                  <div>{moveType + " Move Type"}</div>
-                  <div>{specialNotes}</div>
-                  <div>{notes}</div>
-                </div>
-              </div>
-            );
-          })}
+        <div className={"flex flex-wrap gap-10 overflow-y-auto mt-2"}>
+          {!searchTerm && <MoveCardList keyComboList={keyComboList} />}
+          {searchTerm && <MoveCardList keyComboList={filteredKeyComboList} />}
         </div>
       </main>
     </>

@@ -1,13 +1,12 @@
 // components/layout.js
 
+import ApplicationHeader from "@/components/atoms/AppHeader";
+import { ReactNode } from "react";
 
-import ApplicationHeader from '@/components/AppHeader';
-import { ReactNode } from 'react';
-
-export default function Layout({children}: { children: ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <>
-      <ApplicationHeader/>
+      <ApplicationHeader />
       <main>{children}</main>
     </>
   );

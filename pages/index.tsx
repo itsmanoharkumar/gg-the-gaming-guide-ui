@@ -1,4 +1,4 @@
-import GameCard from "@/components/GameCard";
+import GameCard from "@/components/atoms/GameCard";
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
 import { MK11Ultimate } from "@/types/mk11UltimateType";

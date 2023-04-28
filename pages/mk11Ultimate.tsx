@@ -89,7 +89,7 @@ export default function Home({ mk11UltimateData }: Props) {
             },
           ]}
         />
-        <div className={"flex flex-wrap justify-start p-2 w-full sm:w-1/3"}>
+        <div className={"flex flex-wrap justify-start py-2 w-full sm:w-1/3"}>
           <input
             className={"p-1 rounded w-full border-gray-300 border"}
             onChange={(e) => setSearchTerm(e.target.value)}

@@ -10,7 +10,7 @@ interface Props {
 
 export default function Breadcrumbs({ breadcrumbList }: Props) {
   return (
-    <div className={"ml-2"}>
+    <div className={""}>
       {breadcrumbList.map((item, index) => {
         return (
           <div key={index} className={"inline-block"}>

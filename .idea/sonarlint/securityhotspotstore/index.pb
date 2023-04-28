@@ -38,14 +38,10 @@ H
 types/mkCharacterType.ts,4\7\4756f96caa5ebae38745be180ae2ad66280f823a
 A
 store/appSlice.ts,2\9\29ccae0d639ac164ac2371a74b6c6342109510c9
-H
-components/AppHeader.tsx,2\3\236265c5453e8e465da3f961bd65a3238c8b4eb3
 F
 types/ImageDataType.ts,3\6\362f3025cd07b5f342d212be856b2b93da220531
 D
 helpers/constants.ts,0\8\08a64acfe6de86717ea4bde5685890b01d259e8e
-G
-components/GameCard.tsx,b\1\b157361dc286ee438bc7c08038d494158eb7a669
 >
 next.config.js,8\1\811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
 D
@@ -54,8 +50,6 @@ L
 public/safari-pinned-tab.svg,c\a\cacc7d4bcf6a45efe0e4e8a5d2ba1bcf48e0e4b3
 >
 types/enums.ts,3\7\3763bbf3bce163e904010d8f6a07c18f68797e14
-L
-components/CharacterCard.tsx,c\c\ccaed90e9f6cf7a34d16933647c3dd6bdfeb0068
 A
 helpers/helper.ts,b\4\b420c28080f2397a504936836bd2ed8ea358483d
 I

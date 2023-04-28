@@ -27,7 +27,8 @@ export function extractImageData(
   imageData: StrapiImageData,
   imageSize: IMAGE_SIZE
 ): { width: number; height: number; src: string } {
-  const { width, height, url } = imageData?.attributes?.formats[imageSize];
+  const formatData = imageData?.attributes?.formats[imageSize];
+  const {width, height, url}= formatData || {}
   let src = url;
   if (url?.startsWith("/")) {
     src = url

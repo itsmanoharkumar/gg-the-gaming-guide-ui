@@ -7,9 +7,11 @@ interface Props {
 export default function PlaystationCommands({ inputCommands }: Props) {
   const inputCommandsArray = inputCommands?.split(" ") || [];
   return (
-    <div className={"flex"}>
+    <div className={"flex items-center justify-between mb-2"}>
       {inputCommandsArray.map((inputCommand, index) => {
-        return <PlaystationButton value={inputCommand} key={index} />;
+        if (inputCommand) {
+          return <PlaystationButton value={inputCommand} key={index} />;
+        }
       })}
     </div>
   );
