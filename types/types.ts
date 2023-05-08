@@ -69,7 +69,7 @@ export type MKKeyComboCategory = {
 export type MKKeyComboCategoryAttributes = {
   name: string;
   mk_key_combo_subcategories: {
-    data: MKKeyComboSubcategory;
+    data: MKKeyComboSubcategory[];
   };
 } & Timestamp;
 

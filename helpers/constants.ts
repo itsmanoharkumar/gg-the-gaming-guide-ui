@@ -5,4 +5,5 @@ export const API_ROUTES = {
   mk11Ultimate: "/mk-11-ultimate",
   mkCharacters: "/mk-characters",
   mkCharacterVariations: "/mk-character-variations",
+  mkKeyComboCategories: "/mk-key-combo-categories",
 };
