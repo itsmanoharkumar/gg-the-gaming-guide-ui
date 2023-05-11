@@ -4,7 +4,7 @@ import { Timestamp } from "@/types/types";
 
 export type MK11UltimateAttributes = {
   name: string;
-  mk_characters: {
+  characters: {
     data: MKCharacter[];
   };
   banner: {

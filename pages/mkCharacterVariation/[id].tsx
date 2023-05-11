@@ -1,31 +1,24 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
 
-import {
-  MKKeyCombo,
-  MKKeyComboAttributes,
-  MKKeyComboCategory,
-  MKKeyComboCategoryAttributes,
-  MKKeyComboSubcategory,
-  MKKeyComboSubcategoryAttributes,
-} from "@/types/types";
-import { divide, min } from "lodash";
 import qs from "qs";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import MoveCardList from "@/components/molecules/MoveCardList";
 import SoftTab from "@/components/atoms/SoftTab";
-import { log } from "util";
+import { MKKeyCombo, MKKeyComboAttributes } from "@/types/mkKeyCombo";
+import { MKKeyComboCategory } from "@/types/mkKeyComboCategory";
+import { MKKeyComboSubcategoryAttributes } from "@/types/mkKeyComboSubcategory";
 
 export async function getStaticProps({ params }: { params: { id: number } }) {
   const query = qs.stringify({
     populate: {
-      mk_key_combos: {
-        populate: ["frameData", "moveData", "mk_key_combo_subcategory"],
+      combos: {
+        populate: ["frameData", "moveData", "subcategory"],
         sort: ["moveData.damage:desc"],
       },
-      mk_character: {
+      character: {
         populate: "*",
       },
     },
@@ -34,10 +27,10 @@ export async function getStaticProps({ params }: { params: { id: number } }) {
     API_ROUTES.mkCharacterVariations + `/${params.id}?${query}`
   );
   const characterName =
-    mkCharacterVariationData?.data?.attributes?.mk_character?.data?.attributes
+    mkCharacterVariationData?.data?.attributes?.character?.data?.attributes
       ?.name || null;
   const variationName = mkCharacterVariationData?.data?.attributes?.name;
-  const data = mkCharacterVariationData?.data?.attributes?.mk_key_combos?.data;
+  const data = mkCharacterVariationData?.data?.attributes?.combos?.data;
 
   const keyComboCategoryList = await fetcher(
     API_ROUTES.mkKeyComboCategories + `?populate=*`
@@ -50,6 +43,7 @@ export async function getStaticProps({ params }: { params: { id: number } }) {
       characterName,
       variationName,
       keyComboCategoryData,
+      mkCharacterVariationData,
     }, // will be passed to the page component as props
   };
 }
@@ -62,7 +56,6 @@ export async function getStaticPaths() {
       id: String(item.id),
     },
   }));
-  console.log({ paths });
   return {
     paths,
     fallback: true, // can also be true or 'blocking'
@@ -75,6 +68,7 @@ export default function Home({
   variationName,
   keyComboCategoryData,
 }: {
+  mkCharacterVariationData: any;
   keyComboList: MKKeyCombo[];
   characterName: string;
   variationName: string;
@@ -119,26 +113,24 @@ export default function Home({
       id: 0,
     });
     setTabList(tabList2);
-  }, []);
+  }, [keyComboCategoryData]);
 
   useEffect(() => {
-    const selectedKeyComboCategoryData = keyComboCategoryData.find(
+    const selectedKeyComboCategoryData = keyComboCategoryData?.find(
       (category) => {
         return category.id === selectedTab;
       }
     );
     const selectedKeyComboSubCategoryDataList =
-      selectedKeyComboCategoryData?.attributes.mk_key_combo_subcategories.data;
-    console.log(selectedKeyComboSubCategoryDataList);
+      selectedKeyComboCategoryData?.attributes.subcategories.data;
     const mkKeyComboSubcategories = selectedKeyComboSubCategoryDataList?.map(
       (item) => {
         return {
           ...item,
           keyComboList: keyComboList?.filter((keyCombo) => {
             const attributes = keyCombo?.attributes;
-            const { mk_key_combo_subcategory }: MKKeyComboAttributes =
-              attributes;
-            return mk_key_combo_subcategory?.data?.id === item.id;
+            const { subcategory }: MKKeyComboAttributes = attributes;
+            return subcategory?.data?.id === item.id;
           }),
         };
       }

@@ -1,9 +1,6 @@
 import React, { FunctionComponent } from "react";
-import { MKKeyCombo, MKKeyComboAttributes } from "@/types/types";
-import MoveCardTitle from "@/components/molecules/MoveCardTitle";
-import MoveCardDetailSection from "@/components/molecules/MoveCardDetailSection";
 import MoveCard from "@/components/molecules/MoveCard";
-import { log } from "util";
+import { MKKeyCombo } from "@/types/mkKeyCombo";
 
 export interface OwnProps {
   keyComboList: MKKeyCombo[];

@@ -1,7 +1,8 @@
 import React, { FunctionComponent, useEffect } from "react";
 import { frameData } from "framer-motion";
-import { MKFrameData, MKMoveData } from "@/types/types";
 import { MOVE_TYPE } from "@/types/enums";
+import { MKMoveData } from "@/types/mkMoveData";
+import { MKFrameData } from "@/types/mkFrameData";
 
 export interface OwnProps {
   frameData: MKFrameData;

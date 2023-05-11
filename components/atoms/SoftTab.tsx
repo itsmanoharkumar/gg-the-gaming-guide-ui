@@ -19,7 +19,7 @@ const SoftTab: FunctionComponent<Props> = ({
         "flex overflow-y-auto rounded bg-gray-100 shadow p-2 items-center h-[64px]"
       }
     >
-      {tabList.map((item) => {
+      {tabList?.map((item) => {
         return (
           <div
             key={item.id}

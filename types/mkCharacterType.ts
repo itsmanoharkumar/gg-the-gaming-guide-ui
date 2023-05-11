@@ -1,8 +1,9 @@
-import { MKCharacterVariation, Timestamp } from "@/types/types";
+import { Timestamp } from "@/types/types";
+import { MKCharacterVariation } from "@/types/mkCharacterVariationType";
 
 export type MKCharacterAttributes = {
   name: string;
-  mk_character_variations: {
+  variations: {
     data: MKCharacterVariation[];
   };
 } & Timestamp;

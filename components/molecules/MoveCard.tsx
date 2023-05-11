@@ -2,7 +2,7 @@ import React, { FunctionComponent } from "react";
 import MoveCardTitle from "@/components/molecules/MoveCardTitle";
 import MoveCardDetailSection from "@/components/molecules/MoveCardDetailSection";
 import { frameData } from "framer-motion";
-import { MKKeyComboAttributes, MKMoveData } from "@/types/types";
+import { MKKeyComboAttributes } from "@/types/mkKeyCombo";
 
 export interface OwnProps {
   keyComboData: MKKeyComboAttributes;
@@ -11,7 +11,7 @@ export interface OwnProps {
 type Props = OwnProps;
 
 const MoveCard: FunctionComponent<Props> = ({ keyComboData }) => {
-  const { name, inputCommands, frameData, moveData }: MKKeyComboAttributes =
+  const { name, combo, frameData, moveData }: MKKeyComboAttributes =
     keyComboData;
   return (
     <div
@@ -19,7 +19,7 @@ const MoveCard: FunctionComponent<Props> = ({ keyComboData }) => {
         "shadow-md border border-gray-100 rounded w-full sm:w-[47%] lg:w-[450px] xl:w-[600px] p-4"
       }
     >
-      <MoveCardTitle name={name} inputCommands={inputCommands} />
+      <MoveCardTitle name={name} combos={combo} />
       <MoveCardDetailSection frameData={frameData} moveData={moveData} />
     </div>
   );

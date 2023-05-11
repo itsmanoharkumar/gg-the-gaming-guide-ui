@@ -6,17 +6,17 @@ import Head from "next/head";
 import qs from "qs";
 import CharacterList from "@/components/molecules/CharacterList";
 import { useEffect, useState } from "react";
-import { MKCharacterVariation } from "@/types/types";
 import CharacterVariationList from "@/components/molecules/CharacterVariationList";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
+import { MKCharacterVariation } from "@/types/mkCharacterVariationType";
 
 export async function getStaticProps() {
   const query = qs.stringify({
     populate: {
-      mk_characters: {
+      characters: {
         populate: {
-          mk_character_variations: {
-            populate: ["image", "mk_character"],
+          variations: {
+            populate: ["image", "character"],
           },
         },
       },
@@ -37,7 +37,7 @@ interface Props {
 export default function Home({ mk11UltimateData }: Props) {
   const {
     name,
-    mk_characters: { data },
+    characters: { data },
   }: MK11UltimateAttributes = mk11UltimateData?.attributes;
   const [searchTerm, setSearchTerm] = useState("");
   const [characterVariationList, setCharacterVariationList] = useState<
@@ -51,9 +51,7 @@ export default function Home({ mk11UltimateData }: Props) {
   useEffect(() => {
     const characterVariationList: MKCharacterVariation[] = [];
     characters.forEach((character) => {
-      characterVariationList.push(
-        ...character.attributes.mk_character_variations.data
-      );
+      characterVariationList.push(...character.attributes.variations.data);
     });
     setCharacterVariationList(characterVariationList);
   }, data);
@@ -62,7 +60,7 @@ export default function Home({ mk11UltimateData }: Props) {
     const results = characterVariationList.filter((characterVariation) => {
       const name = characterVariation.attributes.name.toLowerCase();
       const characterName =
-        characterVariation.attributes.mk_character.data.attributes.name.toLowerCase();
+        characterVariation.attributes.character.data.attributes.name.toLowerCase();
       return (
         name.includes(searchTerm.toLowerCase()) ||
         characterName.includes(searchTerm.toLowerCase())

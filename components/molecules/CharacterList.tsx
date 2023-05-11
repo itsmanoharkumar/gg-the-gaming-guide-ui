@@ -12,7 +12,7 @@ export default function CharacterList({ characters }: Props) {
         const id = character?.id;
         const attributes = character?.attributes;
         const name = attributes?.name;
-        const variations = attributes?.mk_character_variations;
+        const variations = attributes?.variations;
         return (
           <div
             key={id}

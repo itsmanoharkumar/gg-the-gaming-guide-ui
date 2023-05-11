@@ -1,6 +1,6 @@
-import { MKCharacterVariation } from "@/types/types";
 import CharacterVariationCard from "@/components/atoms/CharacterVariationCard";
 import { useRouter } from "next/router";
+import { MKCharacterVariation } from "@/types/mkCharacterVariationType";
 
 interface Props {
   variations: MKCharacterVariation[];

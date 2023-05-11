@@ -3,12 +3,12 @@ import PlaystationCommands from "@/components/molecules/PlaystationCommands";
 
 export interface OwnProps {
   name: string;
-  inputCommands: string;
+  combos: string;
 }
 
 type Props = OwnProps;
 
-const MoveCardTitle: FunctionComponent<Props> = ({ name, inputCommands }) => {
+const MoveCardTitle: FunctionComponent<Props> = ({ name, combos }) => {
   return (
     <div
       className={
@@ -16,7 +16,7 @@ const MoveCardTitle: FunctionComponent<Props> = ({ name, inputCommands }) => {
       }
     >
       <div className={"font-bold text-xl mb-2 flex items-center"}>{name}</div>
-      <PlaystationCommands inputCommands={inputCommands} />
+      <PlaystationCommands inputCommands={combos} />
     </div>
   );
 };
