@@ -30,13 +30,14 @@ export default function CharacterVariationCard({
         onClick(id);
       }}
     >
-      <div className={"flex justify-center w-full"}>
+      <div className={"flex justify-center w-full h-[200px]"}>
         <Image
-          className={"w-full"}
+          className={"w-full object-cover object-top"}
           src={src}
           alt={name}
           width={width}
           height={height}
+          loading={"lazy"}
         />
       </div>
       <div className={"text-center text-sm py-2 font-semibold"}>{name}</div>

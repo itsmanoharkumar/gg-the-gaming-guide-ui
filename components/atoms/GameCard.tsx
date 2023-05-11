@@ -18,11 +18,9 @@ export default function GameCard({ gameName, banner }: Props) {
   const { width, height, src } = extractImageData(banner, IMAGE_SIZE.SMALL);
   return (
     <div
-      className={
-        "max-w-[300px] overflow-hidden rounded border-[1px] border-gray-200 cursor-pointer w-full flex flex-col" +
-        " justify-center" +
-        " items-center"
-      }
+      className={`max-w-[300px] overflow-hidden 
+      rounded border-[1px] border-gray-200 cursor-pointer w-full flex flex-col justify-center items-center
+      `}
       onClick={handleOnClick}
     >
       <div className={"overflow-hidden"}>

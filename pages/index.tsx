@@ -30,7 +30,9 @@ export default function Home({
       <Head>
         <title>GG The Gaming Guide</title>
       </Head>
-      <main className={`min-h-screen p-4 pt-14 select-none`}>
+      <main
+        className={`min-h-screen p-4 pt-14 select-none flex justify-center sm:justify-start items-start `}
+      >
         <GameCard gameName={name} banner={data} />
       </main>
     </>
