@@ -92,10 +92,10 @@ export default function Home({
     if (searchTerm) {
       const filteredList = keyComboList.filter((item) => {
         const attributes = item?.attributes;
-        const { name, inputCommands }: MKKeyComboAttributes = attributes;
+        const { name, combo }: MKKeyComboAttributes = attributes;
         return (
           name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          inputCommands.toLowerCase().includes(searchTerm.toLowerCase())
+          combo.toLowerCase().includes(searchTerm.toLowerCase())
         );
       });
       setFilteredKeyComboList(filteredList);
