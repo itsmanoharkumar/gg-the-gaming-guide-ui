@@ -1,5 +1,6 @@
-import { MKKeyCombo, Timestamp } from "@/types/types";
+import { Timestamp } from "@/types/types";
 import { MKKeyComboCategory } from "@/types/mkKeyComboCategory";
+import { MKKeyCombo } from "@/types/mkKeyCombo";
 
 export type MKKeyComboSubcategory = {
   id: number;
