@@ -1,5 +1,5 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import "@/styles/globals.css";
+import type { AppProps } from "next/app";
 import UserAuthContext from "@/context/UserAuthContext";
 import Layout from "@/layouts/layout";
 import { wrapper } from "@/store/store";
@@ -13,23 +13,22 @@ axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 axios.defaults.withCredentials = true;
 
 export default function App({ Component, ...rest }: AppProps) {
-  const {store, props} = wrapper.useWrappedStore(rest);
-  const {pageProps} = props;
+  const { store, props } = wrapper.useWrappedStore(rest);
+  const { pageProps } = props;
   return (
-  
-  <>
-    <SWRConfig>
-      <CookiesProvider>
-        <Provider store={store}>
-          <UserAuthContext>
-            <Layout>
-              <Component {...pageProps} />
-              <Analytics/>
-            </Layout>
-          </UserAuthContext>
-        </Provider>
-      </CookiesProvider>
-    </SWRConfig>
-  </>
-  )
+    <>
+      <SWRConfig>
+        <CookiesProvider>
+          <Provider store={store}>
+            <UserAuthContext>
+              <Layout>
+                <Component {...pageProps} />
+                <Analytics />
+              </Layout>
+            </UserAuthContext>
+          </Provider>
+        </CookiesProvider>
+      </SWRConfig>
+    </>
+  );
 }
