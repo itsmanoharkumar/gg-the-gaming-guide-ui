@@ -22,7 +22,7 @@ export default function CharacterVariationCard({
   return (
     <div
       className={
-        "border-gray-200 border-[1px] transition-all" +
+        "border-gray-200 border-[1px] transition-all " +
         " items-center rounded w-[45%] cursor-pointer my-2 mr-2 overflow-hidden" +
         (isSearchResult ? " w-[45%] sm:w-[20%] lg:w-[10%]" : "")
       }
