@@ -1,11 +1,11 @@
 import { Timestamp } from "@/types/types";
-import { MKCharacterVariation } from "@/types/mkCharacterVariationType";
+import {StrapiImageData} from "@/types/ImageDataType";
 
 export type MKCharacterAttributes = {
   name: string;
-  variations: {
-    data: MKCharacterVariation[];
-  };
+  image: {
+    data: StrapiImageData;
+  }
 } & Timestamp;
 
 export type MKCharacter = {

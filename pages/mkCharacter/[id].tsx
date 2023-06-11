@@ -1,6 +1,5 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
-
 import qs from "qs";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
 import Head from "next/head";
@@ -23,34 +22,32 @@ export async function getStaticProps({ params }: { params: { id: number } }) {
       },
     },
   });
-  const mkCharacterVariationData = await fetcher(
-    API_ROUTES.mkCharacterVariations + `/${params.id}?${query}`
+  const { data } = await fetcher(
+    API_ROUTES.mkCharacters + `/${params.id}?${query}`
   );
   const characterName =
-    mkCharacterVariationData?.data?.attributes?.character?.data?.attributes
-      ?.name || null;
-  const variationName = mkCharacterVariationData?.data?.attributes?.name;
-  const data = mkCharacterVariationData?.data?.attributes?.combos?.data;
+    data?.attributes?.name;
+  const comboData = data?.attributes?.combos?.data;
 
   const keyComboCategoryList = await fetcher(
     API_ROUTES.mkKeyComboCategories + `?populate=*`
   );
   const keyComboCategoryData = keyComboCategoryList?.data;
+  debugger;
 
   return {
     props: {
-      keyComboList: data,
+      keyComboList: comboData,
       characterName,
-      variationName,
       keyComboCategoryData,
-      mkCharacterVariationData,
+      mkCharacterData: data,
     }, // will be passed to the page component as props
   };
 }
 
 export async function getStaticPaths() {
-  const mkCharacterVariations = await fetcher(API_ROUTES.mkCharacterVariations);
-  const characterData = mkCharacterVariations?.data;
+  const mkCharacters = await fetcher(API_ROUTES.mkCharacters);
+  const characterData = mkCharacters?.data;
   const paths = characterData?.map((item: any) => ({
     params: {
       id: String(item.id),
@@ -65,15 +62,16 @@ export async function getStaticPaths() {
 export default function Home({
   keyComboList,
   characterName,
-  variationName,
   keyComboCategoryData,
 }: {
-  mkCharacterVariationData: any;
+  mkCharacterData: any;
   keyComboList: MKKeyCombo[];
   characterName: string;
-  variationName: string;
   keyComboCategoryData: MKKeyComboCategory[];
 }) {
+  console.log(keyComboCategoryData);
+  console.log(keyComboList);
+  console.log(characterName);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredKeyComboList, setFilteredKeyComboList] = useState<
     MKKeyCombo[]
@@ -141,7 +139,7 @@ export default function Home({
   return (
     <>
       <Head>
-        <title>{characterName + " | " + variationName}</title>
+        <title>{characterName}</title>
       </Head>
       <main className={`min-h-screen p-4 mt-10 select-none`}>
         <Breadcrumbs
@@ -158,10 +156,6 @@ export default function Home({
             },
             {
               name: characterName,
-              isLink: false,
-            },
-            {
-              name: variationName,
               isLink: false,
             },
           ]}

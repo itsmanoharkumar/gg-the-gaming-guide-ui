@@ -6,27 +6,21 @@ import Head from "next/head";
 import qs from "qs";
 import CharacterList from "@/components/molecules/CharacterList";
 import { useEffect, useState } from "react";
-import CharacterVariationList from "@/components/molecules/CharacterVariationList";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
-import { MKCharacterVariation } from "@/types/mkCharacterVariationType";
 
 export async function getStaticProps() {
   const query = qs.stringify({
     populate: {
       characters: {
-        populate: {
-          variations: {
-            populate: ["image", "character"],
+            populate: ["image"],
           },
-        },
       },
-    },
   });
   const { data } = await fetcher(API_ROUTES.mk11Ultimate + "?" + query);
   return {
     props: {
       mk11UltimateData: data,
-    }, // will be passed to the page component as props
+    },
   };
 }
 
@@ -40,34 +34,30 @@ export default function Home({ mk11UltimateData }: Props) {
     characters: { data },
   }: MK11UltimateAttributes = mk11UltimateData?.attributes;
   const [searchTerm, setSearchTerm] = useState("");
-  const [characterVariationList, setCharacterVariationList] = useState<
-    MKCharacterVariation[]
+  const [characterList, setCharacterList] = useState<
+    MKCharacter[]
   >([]);
-  const [searchResults, setSearchResults] = useState<MKCharacterVariation[]>(
+  const [searchResults, setSearchResults] = useState<MKCharacter[]>(
     []
   );
-  const hasCharacters = data?.length > 0;
-  const characters = data as MKCharacter[];
-  useEffect(() => {
-    const characterVariationList: MKCharacterVariation[] = [];
-    characters.forEach((character) => {
-      characterVariationList.push(...character.attributes.variations.data);
-    });
-    setCharacterVariationList(characterVariationList);
-  }, data);
 
   useEffect(() => {
-    const results = characterVariationList.filter((characterVariation) => {
-      const name = characterVariation.attributes.name.toLowerCase();
-      const characterName =
-        characterVariation.attributes.character.data.attributes.name.toLowerCase();
+    const characterList = mk11UltimateData?.attributes.characters?.data;
+    setCharacterList(characterList);
+  }, [mk11UltimateData]);
+
+  const hasCharacters = data?.length > 0;
+
+  useEffect(() => {
+    const results = characterList.filter((character) => {
+      const name = character.attributes.name.toLowerCase();
       return (
-        name.includes(searchTerm.toLowerCase()) ||
-        characterName.includes(searchTerm.toLowerCase())
+        name.includes(searchTerm.toLowerCase())
       );
     });
     setSearchResults(results);
   }, [searchTerm]);
+
   return (
     <>
       <Head>
@@ -91,15 +81,18 @@ export default function Home({ mk11UltimateData }: Props) {
           <input
             className={"p-1 rounded w-full border-gray-300 border"}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder={"Search Character/Variation"}
+            placeholder={"Search Character"}
           />
         </div>
         {!searchTerm && hasCharacters && (
-          <CharacterList characters={characters} />
+          <CharacterList
+            data={characterList}
+            isSearchResult={true}
+          />
         )}
         {searchTerm && hasCharacters && (
-          <CharacterVariationList
-            variations={searchResults}
+          <CharacterList
+            data={searchResults}
             isSearchResult={true}
           />
         )}

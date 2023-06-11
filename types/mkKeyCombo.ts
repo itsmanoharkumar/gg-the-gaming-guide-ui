@@ -1,8 +1,8 @@
 import { MKKeyComboSubcategory } from "@/types/mkKeyComboSubcategory";
 import { Timestamp } from "@/types/types";
-import { MKCharacterVariation } from "@/types/mkCharacterVariationType";
 import { MKFrameData } from "@/types/mkFrameData";
 import { MKMoveData } from "@/types/mkMoveData";
+import {MKCharacter} from "@/types/mkCharacterType";
 
 export type MKKeyComboAttributes = {
   name: string;
@@ -15,8 +15,8 @@ export type MKKeyComboAttributes = {
   subcategory: {
     data: MKKeyComboSubcategory;
   };
-  character_variation: {
-    data: MKCharacterVariation;
+  character: {
+    data: MKCharacter;
   };
   easyFatality: Array<{ name: string; inputCommands: string }>;
 } & Timestamp;

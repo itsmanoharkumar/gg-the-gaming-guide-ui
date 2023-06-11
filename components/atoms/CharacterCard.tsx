@@ -11,7 +11,7 @@ interface Props {
   isSearchResult?: boolean;
 }
 
-export default function CharacterVariationCard({
+export default function CharacterCard({
   id,
   name,
   onClick,

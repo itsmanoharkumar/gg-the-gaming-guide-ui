@@ -1,26 +1,38 @@
-import { MKCharacter } from "@/types/mkCharacterType";
-import CharacterVariationList from "@/components/molecules/CharacterVariationList";
+import CharacterCard from "@/components/atoms/CharacterCard";
+import { useRouter } from "next/router";
+import {MKCharacter} from "@/types/mkCharacterType";
 
 interface Props {
-  characters: MKCharacter[];
+  data: MKCharacter[];
+  isSearchResult?: boolean;
 }
 
-export default function CharacterList({ characters }: Props) {
+export default function CharacterList({
+  data,
+  isSearchResult,
+}: Props) {
+  const navigate = useRouter();
+
+  function handleCharacterClick(id: number) {
+    navigate.push("/mkCharacter/" + id);
+  }
   return (
-    <div className={"rounded p-2 flex flex-wrap justify-start"}>
-      {characters.map((character: MKCharacter) => {
-        const id = character?.id;
-        const attributes = character?.attributes;
-        const name = attributes?.name;
-        const variations = attributes?.variations;
+    <div className={"flex flex-wrap justify-between sm:justify-start"}>
+      {data?.map((item: MKCharacter) => {
+        const id = item?.id;
+        const {
+          name,
+          image: { data },
+        } = item?.attributes;
         return (
-          <div
+          <CharacterCard
+            name={name}
             key={id}
-            className={"mb-10 w-full sm:w-[50%] lg:w-[30%] xl:w-[20%]"}
-          >
-            <div className={"font-bold text-2xl"}>{name}</div>
-            <CharacterVariationList variations={variations?.data} />
-          </div>
+            id={id}
+            image={data}
+            isSearchResult={isSearchResult}
+            onClick={handleCharacterClick}
+          />
         );
       })}
     </div>
