@@ -2,7 +2,7 @@ import { MKKeyComboSubcategory } from "@/types/mkKeyComboSubcategory";
 import { Timestamp } from "@/types/types";
 import { MKFrameData } from "@/types/mkFrameData";
 import { MKMoveData } from "@/types/mkMoveData";
-import {MKCharacter} from "@/types/mkCharacterType";
+import { MKCharacter } from "@/types/mkCharacter";
 
 export type MKKeyComboAttributes = {
   name: string;

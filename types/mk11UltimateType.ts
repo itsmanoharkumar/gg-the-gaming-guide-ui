@@ -1,5 +1,5 @@
 import { StrapiImageData } from "@/types/ImageDataType";
-import { MKCharacter } from "@/types/mkCharacterType";
+import { MKCharacter } from "@/types/mkCharacter";
 import { Timestamp } from "@/types/types";
 
 export type MK11UltimateAttributes = {

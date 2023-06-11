@@ -1,16 +1,13 @@
 import CharacterCard from "@/components/atoms/CharacterCard";
 import { useRouter } from "next/router";
-import {MKCharacter} from "@/types/mkCharacterType";
+import { MKCharacter } from "@/types/mkCharacter";
 
 interface Props {
   data: MKCharacter[];
   isSearchResult?: boolean;
 }
 
-export default function CharacterList({
-  data,
-  isSearchResult,
-}: Props) {
+export default function CharacterList({ data, isSearchResult }: Props) {
   const navigate = useRouter();
 
   function handleCharacterClick(id: number) {

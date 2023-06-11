@@ -1,17 +1,17 @@
-import { OPERATING_SYSTEM } from "@/types/enums";
+import { THEME_MODE } from "@/types/types";
 import { createSlice } from "@reduxjs/toolkit";
 import { HYDRATE } from "next-redux-wrapper";
 
 const initialState = {
-  operatingSystem: OPERATING_SYSTEM.WINDOWS,
+  themeMode: null as THEME_MODE | null,
 };
 
 export const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setOperatingSystem(state, action) {
-      state.operatingSystem = action.payload;
+    setThemeMode(state, action) {
+      state.themeMode = action.payload;
     },
   },
   extraReducers: {
@@ -24,6 +24,6 @@ export const appSlice = createSlice({
   },
 });
 
-export const { setOperatingSystem } = appSlice.actions;
-export const selectOperatingSystem = (state: any) => state.app.operatingSystem;
+export const { setThemeMode } = appSlice.actions;
+export const selectThemeMode = (state: any) => state.app.themeMode;
 export default appSlice.reducer;

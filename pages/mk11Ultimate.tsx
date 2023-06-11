@@ -1,7 +1,7 @@
 import { API_ROUTES } from "@/helpers/constants";
 import fetcher from "@/service/service";
 import { MK11Ultimate, MK11UltimateAttributes } from "@/types/mk11UltimateType";
-import { MKCharacter } from "@/types/mkCharacterType";
+import { MKCharacter } from "@/types/mkCharacter";
 import Head from "next/head";
 import qs from "qs";
 import CharacterList from "@/components/molecules/CharacterList";
@@ -12,9 +12,9 @@ export async function getStaticProps() {
   const query = qs.stringify({
     populate: {
       characters: {
-            populate: ["image"],
-          },
+        populate: ["image"],
       },
+    },
   });
   const { data } = await fetcher(API_ROUTES.mk11Ultimate + "?" + query);
   return {
@@ -34,12 +34,8 @@ export default function Home({ mk11UltimateData }: Props) {
     characters: { data },
   }: MK11UltimateAttributes = mk11UltimateData?.attributes;
   const [searchTerm, setSearchTerm] = useState("");
-  const [characterList, setCharacterList] = useState<
-    MKCharacter[]
-  >([]);
-  const [searchResults, setSearchResults] = useState<MKCharacter[]>(
-    []
-  );
+  const [characterList, setCharacterList] = useState<MKCharacter[]>([]);
+  const [searchResults, setSearchResults] = useState<MKCharacter[]>([]);
 
   useEffect(() => {
     const characterList = mk11UltimateData?.attributes.characters?.data;
@@ -51,9 +47,7 @@ export default function Home({ mk11UltimateData }: Props) {
   useEffect(() => {
     const results = characterList.filter((character) => {
       const name = character.attributes.name.toLowerCase();
-      return (
-        name.includes(searchTerm.toLowerCase())
-      );
+      return name.includes(searchTerm.toLowerCase());
     });
     setSearchResults(results);
   }, [searchTerm]);
@@ -85,16 +79,10 @@ export default function Home({ mk11UltimateData }: Props) {
           />
         </div>
         {!searchTerm && hasCharacters && (
-          <CharacterList
-            data={characterList}
-            isSearchResult={true}
-          />
+          <CharacterList data={characterList} isSearchResult={true} />
         )}
         {searchTerm && hasCharacters && (
-          <CharacterList
-            data={searchResults}
-            isSearchResult={true}
-          />
+          <CharacterList data={searchResults} isSearchResult={true} />
         )}
       </main>
     </>

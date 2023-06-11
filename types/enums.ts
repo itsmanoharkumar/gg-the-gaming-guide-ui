@@ -21,6 +21,6 @@ export const enum OPERATING_SYSTEM {
 export const enum CONSOLE_TYPE {
   PLAYSTATION = "PLAYSTATION",
   XBOX = "XBOX",
-  SWITCH = "switch",
-  PC = "pc",
+  SWITCH = "SWITCH",
+  PC = "PC",
 }
