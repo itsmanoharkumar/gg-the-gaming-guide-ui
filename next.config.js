@@ -8,7 +8,7 @@ const withPWA = require("next-pwa")({
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["ggthegamingguide.blob.core.windows.net", "localhost"],
+    domains: ["commanstorageaccount.blob.core.windows.net", "localhost"],
   },
 };
 

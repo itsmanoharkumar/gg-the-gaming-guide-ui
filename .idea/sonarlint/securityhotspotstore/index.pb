@@ -43,3 +43,15 @@ Q
 .components/molecules/MoveCardDetailSection.tsx,7\1\717a4a0e11f6223090ff9b5c29ca6207b8574d83
 >
 types/enums.ts,3\7\3763bbf3bce163e904010d8f6a07c18f68797e14
+<
+package.json,7\0\7030d0b2f71b999ff89a343de08c414af32fc93a
+A
+helpers/helper.ts,b\4\b420c28080f2397a504936836bd2ed8ea358483d
+A
+package-lock.json,f\a\fa288d1472d29beccb489a676f68739ad365fc47
+I
+service/authentication.ts,0\a\0a15d1b568f2e8c24ca99b741956e9433461980d
+B
+service/service.ts,5\6\562fe401cd939112d65e83840a1ff4632adc4447
+C
+types/mkKeyCombo.ts,b\3\b30c759e2e31feb5a1844f96ac9335b3e091ca52
