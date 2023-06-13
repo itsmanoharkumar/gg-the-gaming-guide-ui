@@ -7,6 +7,11 @@ import qs from "qs";
 import CharacterList from "@/components/molecules/CharacterList";
 import { useEffect, useState } from "react";
 import Breadcrumbs from "@/components/atoms/Breadcrumbs";
+import {Button, Container, TextField, Typography} from "@mui/material";
+import Box from "@mui/material/Box";
+import placeholder from "lodash/fp/placeholder";
+import Grid from "@mui/material/Unstable_Grid2";
+import Link from "@/components/atoms/Link";
 
 export async function getStaticProps() {
   const query = qs.stringify({
@@ -57,34 +62,54 @@ export default function Home({ mk11UltimateData }: Props) {
       <Head>
         <title>{name}</title>
       </Head>
-      <main className={`min-h-screen p-4 mt-10 select-none`}>
-        <Breadcrumbs
-          breadcrumbList={[
-            {
-              name: "Home",
-              isLink: true,
-              link: "/",
-            },
-            {
-              name: name,
-              isLink: false,
-            },
-          ]}
-        />
-        <div className={"flex flex-wrap justify-start py-2 w-full sm:w-1/3"}>
-          <input
-            className={"p-1 rounded w-full border-gray-300 border"}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder={"Search Character"}
-          />
-        </div>
-        {!searchTerm && hasCharacters && (
-          <CharacterList data={characterList} isSearchResult={true} />
-        )}
-        {searchTerm && hasCharacters && (
-          <CharacterList data={searchResults} isSearchResult={true} />
-        )}
-      </main>
+      <Container maxWidth={"xl"}>
+        <Box
+            sx={{
+              my: 2,
+            }}
+        >
+          <Typography
+              sx={{
+                typography: {
+                  xs: "h4",
+                  md: "h3",
+                },
+              }}
+              color="primary"
+              gutterBottom
+          >
+            {name}
+          </Typography>
+          <Box
+              sx={{
+                mr: 2,
+                mb: 2,
+              }}
+          >
+            <Grid container>
+              <Grid xs={12} sm={6} lg={4}>
+                <TextField
+                    label={"Search"}
+                    fullWidth={true}
+                    autoFocus={true}
+                    value={searchTerm}
+                    onChange={(event) => setSearchTerm(event.target.value)}
+                />
+              </Grid>
+            </Grid>
+          </Box>
+          <Box>
+            <Grid container spacing={2}>
+              {!searchTerm && hasCharacters && (
+                  <CharacterList data={characterList} isSearchResult={true}/>
+              )}
+              {searchTerm && hasCharacters && (
+                  <CharacterList data={searchResults} isSearchResult={true}/>
+              )}
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
     </>
   );
 }
