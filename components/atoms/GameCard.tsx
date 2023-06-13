@@ -1,32 +1,42 @@
-import { extractImageData } from "@/helpers/helper";
-import { IMAGE_SIZE } from "@/types/enums";
-import { StrapiImageData } from "@/types/ImageDataType";
-import Image from "next/image";
-import { useRouter } from "next/router";
+import {extractImageData} from "@/helpers/helper";
+import {IMAGE_SIZE} from "@/types/enums";
+import {StrapiImageData} from "@/types/types";
+import {useRouter} from "next/router";
+import {Card, CardContent, CardMedia, Typography} from "@mui/material";
 
 interface Props {
-  gameName: string;
-  banner: StrapiImageData;
+    gameName: string;
+    banner: StrapiImageData;
 }
 
-export default function GameCard({ gameName, banner }: Props) {
-  const navigate = useRouter();
-  function handleOnClick() {
-    navigate.push("/mk11Ultimate");
-  }
+export default function GameCard({gameName, banner}: Props) {
+    const navigate = useRouter();
 
-  const { width, height, src } = extractImageData(banner, IMAGE_SIZE.SMALL);
-  return (
-    <div
-      className={`max-w-[300px] overflow-hidden 
-      rounded border-[1px] border-gray-200 cursor-pointer w-full flex flex-col justify-center items-center
-      `}
-      onClick={handleOnClick}
-    >
-      <div className={"overflow-hidden"}>
-        <Image src={src} alt="Banner" width={width} height={height} />
-      </div>
-      <div className={"p-2"}>{gameName}</div>
-    </div>
-  );
+    function handleOnClick() {
+        navigate.push("/mk11Ultimate");
+    }
+
+    const {width, height, src} = extractImageData(banner, IMAGE_SIZE.SMALL);
+    return (
+
+        <Card className={`cursor-pointer`}
+              onClick={handleOnClick}
+        >
+            <CardMedia
+                sx={{
+                    maxWidth: width,
+                    width: "100%",
+                    height: height
+                }}
+                image={src}
+                title={gameName}
+                className={'object-cover'}
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {gameName}
+                </Typography>
+            </CardContent>
+        </Card>
+    );
 }
