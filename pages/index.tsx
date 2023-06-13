@@ -52,7 +52,7 @@ export default function Home({
                         }}
                     >
 
-            <span> Unlock Your Gaming Potential with </span>
+                        <span> Unlock Your Gaming Potential with </span>
                         <Typography
                             variant="h5"
                             component="span"
@@ -65,15 +65,17 @@ export default function Home({
                                     xl: 2,
                                 },
                             }}
-                  className={
-                      "text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600"
-                  }
-              >
-              <span>  GG: The Ultimate Gaming Guide!  </span>
-            </Typography>
-              Level up your skills, discover insider tips, and explore the latest trends in the world of gaming.
-              From comprehensive game reviews to expert strategies, GG is your go-to resource for all things gaming.
-              Get ready to dominate the virtual realm and achieve gaming greatness with GG!
+                            className={
+                                "text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600"
+                            }
+                        >
+                            <span>  GG: The Ultimate Gaming Guide!  </span>
+                        </Typography>
+                        Level up your skills, discover insider tips, and explore the latest trends in the world of
+                        gaming.
+                        From comprehensive game reviews to expert strategies, GG is your go-to resource for all things
+                        gaming.
+                        Get ready to dominate the virtual realm and achieve gaming greatness with GG!
                     </Typography>
                     <Box>
                         <Grid container spacing={2} alignItems={"baseline"}>

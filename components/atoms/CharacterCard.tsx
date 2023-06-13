@@ -1,14 +1,14 @@
-import { StrapiImageData } from "@/types/ImageDataType";
-import Image from "next/image";
+import { StrapiImageData } from "@/types/types";
 import { extractImageData } from "@/helpers/helper";
 import { IMAGE_SIZE } from "@/types/enums";
+import {Card, CardContent, CardMedia, Typography} from "@mui/material";
+import {useRouter} from "next/router";
 
 interface Props {
   name: string;
   id: number;
   onClick: (id: number) => void;
   image: StrapiImageData;
-  isSearchResult?: boolean;
 }
 
 export default function CharacterCard({
@@ -16,31 +16,31 @@ export default function CharacterCard({
   name,
   onClick,
   image,
-  isSearchResult,
 }: Props) {
-  const { src, height, width } = extractImageData(image, IMAGE_SIZE.SMALL);
+  function handleOnClick() {
+      onClick(id);
+  }
+
+  const {width, height, src} = extractImageData(image, IMAGE_SIZE.MEDIUM);
   return (
-    <div
-      className={
-        "border-gray-200 border-[1px] transition-all " +
-        " items-center rounded w-[45%] cursor-pointer my-2 mr-2 overflow-hidden" +
-        (isSearchResult ? " w-[45%] sm:w-[20%] lg:w-[10%]" : "")
-      }
-      onClick={() => {
-        onClick(id);
-      }}
-    >
-      <div className={"flex justify-center w-full h-[200px]"}>
-        <Image
-          className={"w-full object-cover object-top"}
-          src={src}
-          alt={name}
-          width={width}
-          height={height}
-          loading={"lazy"}
+      <Card className={`cursor-pointer`}
+            onClick={handleOnClick}
+      >
+        <CardMedia
+            sx={{
+              maxWidth: width,
+              width: "100%",
+              height: '200px'
+            }}
+            image={src}
+            title={name}
+            className={'bg-top'}
         />
-      </div>
-      <div className={"text-center text-sm py-2 font-semibold"}>{name}</div>
-    </div>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {name}
+          </Typography>
+        </CardContent>
+      </Card>
   );
 }
