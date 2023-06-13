@@ -31,7 +31,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           <Grid
             xs={12}
             sx={{
-              minHeight: "calc(100vh - 64px)",
+              minHeight: "100vh",
               pt: "64px",
             }}
           >
