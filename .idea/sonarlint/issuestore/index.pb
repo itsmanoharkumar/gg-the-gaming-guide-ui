@@ -1,8 +1,4 @@
 
-B
-service/youtube.ts,0\6\064f6806a4a964c68e425239a287c34db8bda8c4
-F
-types/ImageDataType.ts,3\6\362f3025cd07b5f342d212be856b2b93da220531
 N
 components/atoms/AppHeader.tsx,5\6\563826d14f5c7c6158d8de634fdc82c1a9242497
 P
@@ -31,8 +27,6 @@ A
 types/types.ts,3\5\353ee6ebceb4d469d913e7558b730312d92d5199
 N
 types/mkKeyComboSubcategory.ts,8\4\8486c706cbb82b731600a6dbfb5dafc938631a59
-4
-.env,3\c\3c84dcdc6bbe3d7817c49dcdc327b926fea1808a
 >
 pages/_app.tsx,5\5\550528cc072fa7d76d123e2f4303d4ab39daa8e8
 U
@@ -55,23 +49,3 @@ B
 service/service.ts,5\6\562fe401cd939112d65e83840a1ff4632adc4447
 C
 types/mkKeyCombo.ts,b\3\b30c759e2e31feb5a1844f96ac9335b3e091ca52
-V
-&components/molecules/CharacterList.tsx,3\9\39355fd9fcc838b42a1c8e6d0519fbd253d25c60
-D
-helpers/constants.ts,0\8\08a64acfe6de86717ea4bde5685890b01d259e8e
-K
-context/UserAuthContext.tsx,7\7\77d04da9fc07951baafaa2396586bd1c623c2578
-M
-components/atoms/GameCard.tsx,7\8\78eac0657b7f827b9312ffbed5cd8deee831a294
-R
-"components/atoms/CharacterCard.tsx,c\9\c97945186907bff97c1455778a408003ab6022ed
-?
-pages/index.tsx,b\3\b3357635c26d1b52053382ce7e8a8640d31fedc8
-H
-types/mkCharacterType.ts,4\7\4756f96caa5ebae38745be180ae2ad66280f823a
-F
-pages/mk11Ultimate.tsx,9\2\92185df5f755d796a3f5c707c9417320e95ce37d
-J
-pages/mkCharacter/[id].tsx,d\7\d7d1d772fbbd9ec17e39acc8cb6091fb5e0ef4ed
->
-next.config.js,8\1\811a6d5a2e04fadb44d8eec365f2fa8af5c4facf
