@@ -3,6 +3,7 @@ import MoveCardTitle from "@/components/molecules/MoveCardTitle";
 import MoveCardDetailSection from "@/components/molecules/MoveCardDetailSection";
 import { frameData } from "framer-motion";
 import { MKKeyComboAttributes } from "@/types/mkKeyCombo";
+import {Card, CardContent} from "@mui/material";
 
 export interface OwnProps {
   keyComboData: MKKeyComboAttributes;
@@ -14,14 +15,13 @@ const MoveCard: FunctionComponent<Props> = ({ keyComboData }) => {
   const { name, combo, frameData, moveData }: MKKeyComboAttributes =
     keyComboData;
   return (
-    <div
-      className={
-        "shadow-md border border-gray-100 rounded w-full sm:w-[47%] lg:w-[450px] xl:w-[600px] p-4"
-      }
+    <Card
     >
+      <CardContent>
       <MoveCardTitle name={name} combos={combo} />
-      <MoveCardDetailSection frameData={frameData} moveData={moveData} />
-    </div>
+      {/*<MoveCardDetailSection frameData={frameData} moveData={moveData} />*/}
+      </CardContent>
+    </Card>
   );
 };
 

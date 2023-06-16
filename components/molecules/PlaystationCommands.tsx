@@ -7,7 +7,7 @@ interface Props {
 export default function PlaystationCommands({ inputCommands }: Props) {
   const inputCommandsArray = inputCommands?.split(" ") || [];
   return (
-    <div className={"flex items-center justify-between mb-2"}>
+    <div className={"flex items-start justify-between mb-2"}>
       {inputCommandsArray.map((inputCommand, index) => {
         if (inputCommand) {
           return <PlaystationButton value={inputCommand} key={index} />;

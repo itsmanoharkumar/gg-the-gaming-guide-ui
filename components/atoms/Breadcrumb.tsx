@@ -1,4 +1,5 @@
 import Link from "next/link";
+import {Breadcrumbs, Typography} from "@mui/material";
 
 interface Props {
   breadcrumbList: {
@@ -8,25 +9,22 @@ interface Props {
   }[];
 }
 
-export default function Breadcrumbs({ breadcrumbList }: Props) {
+export default function Breadcrumb({ breadcrumbList }: Props) {
   return (
-    <div className={""}>
+    <Breadcrumbs>
       {breadcrumbList.map((item, index) => {
         return (
-          <div key={index} className={"inline-block"}>
+          <>
             {item.isLink ? (
-              <Link href={item.link || ""}>
+              <Link key={index} href={item.link || ""} className={'no-underline'}>
                 <span className={"text-blue-500"}>{item.name}</span>
               </Link>
             ) : (
-              <span>{item.name}</span>
+                <Typography key={index} color="text.primary">{ item.name}</Typography>
             )}
-            {index < breadcrumbList.length - 1 && (
-              <span className={"mx-2"}>/</span>
-            )}
-          </div>
+          </>
         );
       })}
-    </div>
+    </Breadcrumbs>
   );
 }

@@ -6,7 +6,7 @@ import Head from "next/head";
 import qs from "qs";
 import CharacterList from "@/components/molecules/CharacterList";
 import {useEffect, useState} from "react";
-import Breadcrumbs from "@/components/atoms/Breadcrumbs";
+import Breadcrumbs from "@/components/atoms/Breadcrumb";
 import {Button, Container, TextField, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 import placeholder from "lodash/fp/placeholder";
@@ -45,17 +45,18 @@ export default function Home({mk11UltimateData}: Props) {
     useEffect(() => {
         const characterList = mk11UltimateData?.attributes.characters?.data;
         setCharacterList(characterList);
+        setSearchResults(characterList);
     }, [mk11UltimateData]);
 
-    const hasCharacters = data?.length > 0;
 
     useEffect(() => {
-        const results = characterList.filter((character) => {
+        const results = characterList?.filter((character) => {
             const name = character.attributes.name.toLowerCase();
             return name.includes(searchTerm.toLowerCase());
         });
+        console.log(results, searchTerm);
         setSearchResults(results);
-    }, [searchTerm]);
+    }, [searchTerm, characterList]);
 
     return (
         <>
@@ -102,7 +103,7 @@ export default function Home({mk11UltimateData}: Props) {
                     <Box sx={{
                         width: '100%'
                     }}>
-                        <CharacterList data={characterList}/>
+                        <CharacterList data={searchResults}/>
                     </Box>
                 </Box>
             </Container>

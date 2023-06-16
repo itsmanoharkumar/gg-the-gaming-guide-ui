@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from "react";
 import PlaystationCommands from "@/components/molecules/PlaystationCommands";
+import Grid from "@mui/material/Unstable_Grid2";
+import {Typography} from "@mui/material";
 
 export interface OwnProps {
   name: string;
@@ -10,14 +12,16 @@ type Props = OwnProps;
 
 const MoveCardTitle: FunctionComponent<Props> = ({ name, combos }) => {
   return (
-    <div
-      className={
-        "p-2 flex justify-between flex-wrap border-b pb-1 items-center"
-      }
+    <Grid justifyContent={'space-between'} container spacing={2}
+          flexWrap={'nowrap'}
     >
-      <div className={"font-bold text-xl mb-2 flex items-center"}>{name}</div>
-      <PlaystationCommands inputCommands={combos} />
-    </div>
+        <Grid sm={'auto'}>
+            <Typography>{name}</Typography>
+        </Grid>
+        <Grid sm={'auto'}>
+            <PlaystationCommands inputCommands={combos}/>
+        </Grid>
+    </Grid>
   );
 };
 

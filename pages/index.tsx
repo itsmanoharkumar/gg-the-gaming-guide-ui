@@ -71,11 +71,6 @@ export default function Home({
                         >
                             <span>  GG: The Ultimate Gaming Guide!  </span>
                         </Typography>
-                        Level up your skills, discover insider tips, and explore the latest trends in the world of
-                        gaming.
-                        From comprehensive game reviews to expert strategies, GG is your go-to resource for all things
-                        gaming.
-                        Get ready to dominate the virtual realm and achieve gaming greatness with GG!
                     </Typography>
                     <Box>
                         <Grid container spacing={2} alignItems={"baseline"}>

@@ -151,13 +151,6 @@ function ResponsiveAppBar() {
             <Box
               sx={{ flexGrow: 0, mr: 2, display: { xs: "none", sm: "flex" } }}
             >
-              <IconButton aria-label="search" size="large">
-                <SearchOutlined fontSize="inherit" />
-              </IconButton>
-            </Box>
-            <Box
-              sx={{ flexGrow: 0, mr: 2, display: { xs: "none", sm: "flex" } }}
-            >
               <Tooltip title={"Change Theme"}>
                 <span>
                   <ThemeToggleSwitch />
