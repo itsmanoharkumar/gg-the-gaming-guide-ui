@@ -1,4 +1,4 @@
-import { StrapiImageData } from "@/types/ImageDataType";
+import { StrapiImageData } from "@/types/types";
 import { MKCharacter } from "@/types/mkCharacter";
 import { Timestamp } from "@/types/types";
 
